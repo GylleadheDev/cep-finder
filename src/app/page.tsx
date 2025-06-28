@@ -37,7 +37,7 @@ export default function Home() {
       } else {
         setCepData(data);
       }
-    } catch (err) {
+    } catch (err: unknown) {
       setError("Digite um CEP válido (ex: 01001-000)");
       setCepData(null);
     } finally {
