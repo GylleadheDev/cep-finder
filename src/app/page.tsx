@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ThemeContext } from "../lib/utils";
 import { z } from "zod";
+import { LoaderCircle } from "lucide-react";
 
 const cepSchema = z.string().regex(/^\d{5}-?\d{3}$/);
 
@@ -74,18 +75,18 @@ export default function Home() {
             After this click in the button below for Search CEP
           </li>
         </ol>
-        <div className="flex flex-col gap-4 w-full max-w-md my-4 border-2 bg-neutral-100 dark:bg-neutral-900 border-gray-800 dark:border-gray-300 p-4 rounded-md">
-          {loading && <p>Carregando...</p>}
+        
+          {loading && <LoaderCircle className="animate-spin" />}
           {cepData && (
-            <>
+            <div className="flex flex-col gap-4 w-full max-w-md my-4 border-2 bg-neutral-100 dark:bg-neutral-900 border-gray-800 dark:border-gray-300 p-4 rounded-md">
               <h2 className="text-2xl font-bold">CEP: {cepData.cep}</h2>
               <p className="text-sm font-bold ">Rua: {cepData.logradouro}</p>
               <p className="text-sm font-bold ">Bairro: {cepData.bairro}</p>
               <p className="text-sm font-bold ">Cidade: {cepData.localidade}</p>
               <p className="text-sm font-bold ">Estado: {cepData.uf}</p>
-            </>
+              </div>
           )}
-        </div>
+        
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <Button
             className="rounded-full cursor-pointer border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
